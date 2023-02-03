@@ -1,0 +1,26 @@
+{
+  "name": "template-microfront",
+  "private": "true",
+  "version": "0.0.0",
+  "description": "micro frontend application template",
+  "main": "index.js",
+  "workspaces": [
+    "./home",
+    "./chat",
+    "./shared"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm --prefix home run dev\" \"npm --prefix chat run dev\""
+  },
+  "dependencies": {
+    "concurrently": "7.6.0"
+  },
+  "keywords": [
+    "microfrontend",
+    "template",
+    "nextjs",
+    "react"
+  ],
+  "author": "luichix",
+  "license": "ISC"
+}
