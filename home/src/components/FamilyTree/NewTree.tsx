@@ -1,6 +1,5 @@
-import React, { PropsWithChildren, useState } from 'react';
-import { Node } from './Node';
-import styles from '../../styles/tree.module.css';
+import React, { PropsWithChildren } from "react";
+import styles from "../../styles/Familytree.module.css";
 
 /* ----------------------- Third Family Tree Component ---------------------- */
 
@@ -45,16 +44,18 @@ export const NewTree: React.FC<ParentProps> = (parent) => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        padding: '20px',
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        padding: "20px",
       }}
     >
       {renderNode(parent)}
       {parent.child && (
         <div className={styles.newNode}>
-          <MyChildNode child={parent.child} />
+      <div className={styles.child}>
+          <Children child={parent.child} />
+      </div>
         </div>
       )}
     </div>
@@ -67,22 +68,22 @@ export default function MyTreeNode({
 }: PropsWithChildren<any>) {
   return (
     <div className={styles.parent}>
-      <div className={styles.parentNode}>
+      <div className={styles.children}>
         {parent.maternal?.parent?.child && (
-          <MyChildNode child={parent.maternal?.parent?.child} />
+          <Children child={parent.maternal?.parent?.child} />
         )}
         {parent.maternal && (
           <Node
             name={parent.maternal.name}
-            type={parent.maternal.isPerson ? 'patient' : 'family'}
+            type={parent.maternal.isPerson ? "patient" : "family"}
           />
         )}
         <Node
           name={parent.paternal.name}
-          type={parent.paternal.isPerson ? 'patient' : 'family'}
+          type={parent.paternal.isPerson ? "patient" : "family"}
         />
         {parent.paternal?.parent?.child && (
-          <MyChildNode child={parent.paternal?.parent?.child} />
+          <Children child={parent.paternal?.parent?.child} />
         )}
       </div>
       {children}
@@ -90,88 +91,84 @@ export default function MyTreeNode({
   );
 }
 
-const MyChildNode = ({ child }: any) => {
+const Children = ({ child }: any) => {
   return (
-    <div className={styles.child}>
+    <>
       {child &&
         child.map((child: any, index: number) => (
-          <React.Fragment key={index}>
-            <MyChild name={child.name} />
-          </React.Fragment>
+          <Node key={index} name={child.name} type="sick" />
         ))}
-    </div>
-  );
-};
-
-const MyChild = ({ name }: { name: string }) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: '10px',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-      }}
-    >
-      <Node name={name} type={'family'} />
-    </div>
+    </>
   );
 };
 
 export const newFamilyTree: ParentProps = {
   paternal: {
-    name: 'Yo',
+    name: "Yo",
     parent: {
       paternal: {
-        name: 'Padre',
+        name: "Padre",
         parent: {
           paternal: {
-            name: 'Abuelo Paterno',
+            name: "Abuelo Paterno",
           },
           maternal: {
-            name: 'Abuela Paterna',
+            name: "Abuela Paterna",
           },
           child: [
             {
-              name: 'Tia',
+              name: "Tia",
             },
           ],
         },
       },
       maternal: {
-        name: 'Madre',
+        name: "Madre",
         parent: {
           paternal: {
-            name: 'Abuelo Materno',
+            name: "Abuelo Materno",
           },
           maternal: {
-            name: 'Abuela Materna',
+            name: "Abuela Materna",
           },
           child: [
             {
-              name: 'Tio',
+              name: "Tio",
             },
           ],
         },
       },
-      child: [
-        {
-          name: 'Hermano',
-        },
-      ],
+      child: [],
     },
     isPerson: true,
   },
   maternal: {
-    name: 'Esposa',
+    name: "Esposa",
   },
   child: [
     {
-      name: 'Hijo',
+      name: "Hijo",
     },
     {
-      name: 'Hija',
+      name: "Hija",
     },
+
   ],
 };
+
+import classNames from "classnames";
+import { IoPerson } from "react-icons/io5";
+/* ------------------------------- Node Person ------------------------------ */
+
+export function Node({ name, type }: { name: string; type: string }) {
+  return (
+    <div className={styles.node}>
+      <div className={styles.box}>
+        <div className={classNames(styles.burble, styles[type])}>
+          <IoPerson />
+        </div>
+        <span className={styles.pronoun}>{name}</span>
+      </div>
+    </div>
+  );
+}

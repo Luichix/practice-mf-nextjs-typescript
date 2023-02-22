@@ -8,6 +8,7 @@ const Navbar = () => (
         <Link href="/">Home</Link>
         <Link href="/chat">Chat</Link>
         <Link href="/table">Table</Link>
+        <Link href="/tree">Tree</Link>
       </li>
     </ul>
     <style jsx>{`

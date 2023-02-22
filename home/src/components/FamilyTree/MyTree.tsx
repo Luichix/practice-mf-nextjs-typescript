@@ -85,7 +85,7 @@ export default function MyTreeNode({
 
 const MyChildNode = ({ child }: any) => {
   return (
-    <div className={styles.child}>
+    <div className={styles.children}>
       {child &&
         child.map((child: any, index: number) => (
           <React.Fragment key={index}>

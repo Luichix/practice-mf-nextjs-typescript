@@ -72,7 +72,7 @@ function FamilyTreeNode({ name, she, patient = false, children }: any) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className={styles.node}>
+    <div className={styles.familyNode}>
       <div
         style={{
           display: 'flex',

@@ -48,15 +48,10 @@ export default function Tree() {
         </h3>
         <MyTree {...myFamilyTree} />
       </div>
+  
       <div className={styles.div}>
         <h3 style={{ alignSelf: 'flex-start', color: '#666' }}>
           3° Family Tree Component
-        </h3>
-        <NextTree {...nextFamily} />
-      </div>
-      <div className={styles.div}>
-        <h3 style={{ alignSelf: 'flex-start', color: '#666' }}>
-          4° Family Tree Component
         </h3>
         <NewTree {...newFamilyTree} />
       </div>
